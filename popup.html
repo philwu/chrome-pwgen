@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    button {
+      height: 30px;
+      width: 108px;
+      border: none;
+      border-radius: 9px;
+      color: white;
+      background-color: #2196F3;
+      margin-left: 29%;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .txt-pwd {
+      font-size: 24px;
+      text-align: center;
+      border: 2px;
+      border-color: #2196F3;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 90px;
+      height: 26px;
+      margin: 10px 20px;
+    }
+
+    .switch input {
+      display: none;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(64px);
+    }
+
+    .slider:after {
+      color: white;
+      display: block;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 60%;
+      font-size: 10px;
+      font-family: Verdana, sans-serif;
+    }
+
+    .slider.slider-lower:after {
+      content: "Lower";
+    }
+
+    .slider.slider-upper:after {
+      content: "Upper";
+    }
+
+    .slider.slider-num:after {
+      content: "Number";
+    }
+
+    .slider.slider-symbol:after {
+      content: "Symbol";
+    }
+
+    input:checked+.slider:after {
+      left: 34px;
+    }
+
+    .slidecontainer {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .range-slider {
+      -webkit-appearance: none;
+      width: 80%;
+      height: 14px;
+      background: #ccc;
+      border-radius: 10px;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .range-slider:hover {
+      opacity: 1;
+    }
+
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 15px;
+      background: #2196F3;
+      cursor: pointer;
+    }
+
+    .range-slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 15px;
+      background: #2196F3;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      width: 100%;
+      height: 28px;
+      background-color: #000;
+      background-color: rgba(33, 150, 243, 0.9);
+      z-index: 1;
+      position: fixed;
+      left: 0;
+    }
+
+    .modal-content {
+      margin: auto;
+      width: 158px;
+      height: 24px;
+      width: 158px;
+      margin: 2px auto;
+      border-radius: 8px;
+      background-color: transparent;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div class="modal">
+      <div class="modal-content">
+        Copied to clipboard
+      </div>
+    </div>
+    <input class="txt-pwd" value="asdf123rfdsafasdf" type="text" id="pwd" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+  </div>
+  <div class="slidecontainer">
+    <input type="range" min="4" max="64" value="16" class="range-slider" id="lengthRange">
+    <input type="text" id="length" value="16" size="1">
+  </div>
+  <div class="container">
+    <label class="switch">
+      <input type="checkbox" class="input-setting" id="lower">
+      <div class="slider round slider-lower">
+        <span class="on"></span>
+        <span class="off"></span>
+      </div>
+    </label>
+    <label class="switch">
+      <input type="checkbox" class="input-setting" id="upper">
+      <div class="slider round slider-upper">''
+        <span class="on"></span>
+        <span class="off"></span>
+      </div>
+    </label>
+    <label class="switch">
+      <input type="checkbox" class="input-setting" id="num">
+      <div class="slider round slider-num">
+        <span class="on"></span>
+        <span class="off"></span>
+      </div>
+    </label>
+    <label class="switch">
+      <input type="checkbox" class="input-setting" id="symbol">
+      <div class="slider round slider-symbol">
+        <span class="on"></span>
+        <span class="off"></span>
+      </div>
+    </label>
+  </div>
+  <div>
+    <button id="regenerate">ReGenerate</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
