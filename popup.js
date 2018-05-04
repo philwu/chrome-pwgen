@@ -6,10 +6,9 @@ const lower = "abcdefghijklmnopqrstuvwxyz";
 const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const num = "1234567890";
 const symbol = "~!@#$%^*()_-,.?";
-var rule;
+var rule ;
 chrome.storage.sync.get('rule', function (data) {
     rule = data.rule;
-    console.log(rule);
     document.getElementById("lower").checked = rule.lower;
     document.getElementById("upper").checked = rule.upper;
     document.getElementById("num").checked = rule.num;
@@ -57,7 +56,6 @@ function reGenerate() {
     if (rule.symbol) dic += symbol;
 
     while (dic.length > 0 && result.length < length) {
-        // let index = Math.floor(Math.random() * (dic.length));
         var array = new Uint32Array(1);
         window.crypto.getRandomValues(array);
         let index = array[0] % dic.length;
@@ -76,8 +74,8 @@ function fallbackCopyTextToClipboard(text) {
 
     try {
         var successful = document.execCommand('copy');
-        var msg = successful ? 'successful' : 'unsuccessful';
-        console.log('Fallback: Copying text command was ' + msg);
+        document.getElementById("tooltip").className+=" active";
+        setTimeout(function(){document.getElementById("tooltip").className=document.getElementById("tooltip").className.replace(/active/g)},1000);
     } catch (err) {
         console.error('Fallback: Oops, unable to copy', err);
     }
@@ -91,7 +89,8 @@ function copyTextToClipboard(text) {
         return;
     }
     navigator.clipboard.writeText(text).then(function () {
-        console.log('Async: Copying to clipboard was successful!');
+        document.getElementById("tooltip").className+=" active";
+        setTimeout(function(){document.getElementById("tooltip").className=document.getElementById("tooltip").className.replace(/active/g)},1000);
     }, function (err) {
         console.error('Async: Could not copy text: ', err);
     });
